@@ -1,4 +1,5 @@
 using MenuMall.Models;
+using MenuMall.Exercises;
 using MenuMall.UI;
 
 namespace MenuMall
@@ -23,6 +24,8 @@ namespace MenuMall
                  new Student { Id = 8, Namn = "Hanna", Alder = 20, Klass = "B", Poang = 95 }
                  };
 
+            var ex = new LinqExercises(studenter);
+
             // Bygg menyn här. Varje Add tar en text och en metod (eller lambda) som körs när valet görs.
             // AddSubMenu lägger en hel meny som ett val, 0 i undermenyn går tillbaka.
             //
@@ -31,6 +34,7 @@ namespace MenuMall
                 .Add("(Where) Äldre än 20år och mer än 80 poäng.", () =>
                 {
                     Console.WriteLine("Glöm ej!");
+                    ex.AlderOver20PoangOver80();
                 })
 
                 .Add("(Select) Visa bara namn och namn och poäng i annonym typ", () =>
