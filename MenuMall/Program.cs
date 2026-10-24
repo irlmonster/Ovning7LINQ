@@ -36,7 +36,7 @@ namespace MenuMall
                     ex.AlderOver20PoangOver80();
                 })
 
-                .Add("(Select) Visa bara namn och namn och poäng i annonym typ", () =>
+                .Add("(Select) Visa bara namn och namn och poäng i anonym typ", () =>
                 {
                     ex.ListaPaNamn();
                     ex.NamnOchPoangAnonymTyp();
@@ -52,7 +52,7 @@ namespace MenuMall
                     ex.CountStudents();
                 })
 
-                .Add("(Take) Ta ut de tre första studenterna och ta ut de två poängen efter sortering", () =>
+                .Add("(Take) Ta ut de tre första studenterna och ta ut de två bästa poängen efter sortering", () =>
                 {
                     ex.TaUtPoangOchTop3Studenter();
                 })
@@ -67,7 +67,7 @@ namespace MenuMall
                     ex.AnyStudentOver100AndAllStudentsOver50();
                 })
 
-                .Add("(FirstOrDefault / Last / Single) Hämta första i klass b, sista i listan och visst id", () =>
+                .Add("(FirstOrDefault / Last / Single) Hämta första i klass B, sista i listan och visst id", () =>
                 {
                     ex.hamtaMassaStudenter();
                 })
@@ -77,7 +77,7 @@ namespace MenuMall
                     ex.GrupperaPerKlassOchSkrivUtVarjeKlassOchNamn();
                 })
 
-                .Add("(Sum / Average / MIN / MAX) Summera alla poäng, räkna ut medelpoäng och lägsta och hösta poäng.", () =>
+                .Add("(Sum / Average / MIN / MAX) Summera alla poäng, räkna ut medelpoäng och lägsta och högsta poäng.", () =>
                 {
                     ex.SumRaknaUtMedelOchHittaMinMax();
                 })
