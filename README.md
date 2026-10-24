@@ -1,4 +1,4 @@
-﻿# Övning 7 - LINQ
+# Övning 7 - LINQ
 
 En konsolapp i C#, övningar på LINQ
 
