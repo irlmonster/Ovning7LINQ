@@ -33,62 +33,58 @@ namespace MenuMall
             var menu = new ConsoleMenu("Studentlistan")
                 .Add("(Where) Äldre än 20år och mer än 80 poäng.", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
                     ex.AlderOver20PoangOver80();
                 })
 
                 .Add("(Select) Visa bara namn och namn och poäng i annonym typ", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.ListaPaNamn();
+                    ex.NamnOchPoangAnonymTyp();
                 })
 
                 .Add("(OrderBy) Sortera efter ålder och sortera efter poäng, högst först", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.SortPaAlderOPoang();
                 })
 
                 .Add("(Count) Räkna hur många studenter som finns och hur många som går i klass A", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.CountStudents();
                 })
 
                 .Add("(Take) Ta ut de tre första studenterna och ta ut de två poängen efter sortering", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.TaUtPoangOchTop3Studenter();
                 })
 
                 .Add("(Distinct) Visa alla unika klassnamn och visa alla unika åldrar.", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.UnikaAldrarOchKlassnamn();
                 })
 
                 .Add("(Any/All) Finns någon student med 100p? Har alla studenter minst 50p?", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.AnyStudentOver100AndAllStudentsOver50();
                 })
 
                 .Add("(FirstOrDefault / Last / Single) Hämta första i klass b, sista i listan och visst id", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.hamtaMassaStudenter();
                 })
 
                 .Add("(GroupBy) Gruppera per klass och varje klass + namn i gruppen.", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.GrupperaPerKlassOchSkrivUtVarjeKlassOchNamn();
                 })
 
                 .Add("(Sum / Average / MIN / MAX) Summera alla poäng, räkna ut medelpoäng och lägsta och hösta poäng.", () =>
                 {
-                    Console.WriteLine("Glöm ej!");
+                    ex.SumRaknaUtMedelOchHittaMinMax();
                 })
-
-                .Add("Skriv ut hela listan: ", () =>
-                {
-                    
-                })
-                .AddSubMenu("Exempel: undermeny", new ConsoleMenu("Undermeny")
-                    .Add("Val 1", () => Console.WriteLine("Val 1"))
-                    .Add("Val 2", () => Console.WriteLine("Val 2")));
+                
+                .AddSubMenu("Skriv ut hela listan: ", new ConsoleMenu("Undermeny")
+                    .Add("Fallande", () => ex.SkrivUtAllaFallande())
+                    .Add("Stigande", () => ex.SkrivUtAllaStigande()));
 
             menu.Run();
             ConsoleOutput.WriteSuccess("Hej då!");

@@ -1,7 +1,5 @@
 ﻿using MenuMall.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using MenuMall.UI;
 
 namespace MenuMall.Exercises
 {
@@ -27,11 +25,13 @@ namespace MenuMall.Exercises
             var aldre = _studenter.Where(s => s.Alder > 20);
             var points = _studenter.Where(s => s.Poang > 80);
 
+            ConsoleOutput.WriteHeader($"\nÖver 20 år:");
             foreach (var s in aldre)
             {
                 Console.WriteLine($"{s.Namn}, Ålder: {s.Alder} år");
+
             }
-            
+            ConsoleOutput.WriteHeader($"\nÖver 80 poäng: ");
             foreach (var s in points)
             {
                 Console.WriteLine($"{s.Namn} : {s.Poang} poäng");
@@ -44,7 +44,7 @@ namespace MenuMall.Exercises
         public void ListaPaNamn()
         {
             var namn = _studenter.Select(s => s.Namn);
-            
+            ConsoleOutput.WriteHeader($"\nNamn: ");
             foreach (var n in namn)
             {
                 Console.WriteLine(n);
@@ -60,7 +60,7 @@ namespace MenuMall.Exercises
                 s.Namn,
                 s.Poang
             });
-
+            ConsoleOutput.WriteHeader($"\nNamn och poäng: ");
             foreach (var x in namnOchPoang)
             {
                 Console.WriteLine($"{x.Namn}, {x.Poang} poäng.");
@@ -77,14 +77,14 @@ namespace MenuMall.Exercises
             var sortAlder = _studenter.OrderBy(s => s.Alder).ToList();
             var sortPoints = _studenter.OrderByDescending(s => s.Poang).ToList();
 
-            Console.WriteLine("\nSorterade på ålder:");
+            ConsoleOutput.WriteHeader("\nSorterade på ålder:");
             foreach (var student in sortAlder)
             {
                 Console.WriteLine($"{student.Namn}, Ålder: {student.Alder} ");
             }
 
 
-            Console.WriteLine("\nSorterade på poäng:");
+            ConsoleOutput.WriteHeader("\nSorterade på poäng:");
             foreach (var student in sortPoints)
             {
                 Console.WriteLine($"{student.Namn}, Ålder: {student.Poang} ");
@@ -115,8 +115,18 @@ namespace MenuMall.Exercises
             var forsta3 = _studenter.Take(3).ToList();
             var top2 = _studenter.OrderByDescending(s => s.Poang).Take(2).ToList();
 
-            Console.WriteLine($"Våra tre första studenter är: {forsta3}");
-            Console.WriteLine($"Poäng : {top2}");
+            ConsoleOutput.WriteHeader($"\nFörsta 3: ");
+            foreach (var student in forsta3)
+            {
+                Console.WriteLine($"{student.Namn}");
+            }
+
+            ConsoleOutput.WriteHeader($"\nTop 2: ");
+            foreach (var student in top2)
+            {
+                Console.WriteLine($"{student.Namn} : {student.Poang} Poäng");
+            }
+            
 
         }
 
@@ -127,9 +137,20 @@ namespace MenuMall.Exercises
         {
             var unikAlder = _studenter.Select(s => s.Alder).Distinct().ToList();
             var unikaKlasser= _studenter.Select(s => s.Klass).Distinct().ToList();
+            
+            
+            ConsoleOutput.WriteHeader($"\nUnik ålder: ");
+            foreach (var student in unikAlder)
+            {
+                Console.WriteLine($"{student}");
+            }
 
-            Console.WriteLine($"Ålder: {unikAlder}");
-            Console.WriteLine($"Unika klasser: {unikaKlasser}");
+            ConsoleOutput.WriteHeader($"\nUnika klasser: ");
+            foreach (var klass in unikaKlasser)
+            {
+                Console.WriteLine($"{klass}");
+            }
+            
         }
 
 
@@ -164,10 +185,9 @@ namespace MenuMall.Exercises
         public void GrupperaPerKlassOchSkrivUtVarjeKlassOchNamn()
         {
             var grupperaPerKlass = _studenter.GroupBy(s => s.Klass);
-
             foreach (var grupp in grupperaPerKlass)
             {
-                Console.WriteLine($"Klass {grupp.Key}:");
+                ConsoleOutput.WriteHeader($"Klass {grupp.Key}:");
 
                 foreach (var student in grupp)
                 {
@@ -188,10 +208,43 @@ namespace MenuMall.Exercises
             int min = _studenter.Min(s => s.Poang);
             int max = _studenter.Max(s => s.Poang);
 
-            Console.WriteLine($"Summa poäng: {sum}");
-            Console.WriteLine($"Medelpoäng: {sum:F1}");
-            Console.WriteLine($"Lägsta poäng: {min}");
-            Console.WriteLine($"Högsta poäng: {max}");
+            Console.WriteLine();
+            ConsoleOutput.WriteHeader($"Summa poäng: {sum}");
+            ConsoleOutput.WriteWarning($"Medelpoäng: {average:F1}");
+            ConsoleOutput.WriteError($"Lägsta poäng: {min}");
+            ConsoleOutput.WriteSuccess($"Högsta poäng: {max}");
         }
+
+        // skriva ut
+        public void SkrivUtAlla()
+        {
+            ConsoleOutput.WriteHeader($"\nAlla studenter: ");
+            foreach (var s in _studenter)
+            {
+                Console.WriteLine($"{s.Id}. {s.Namn}, {s.Alder} år, klass {s.Klass}, {s.Poang} poäng");
+            }
+        }
+
+        // skriva ut dscending
+        public void SkrivUtAllaFallande()
+        {
+            ConsoleOutput.WriteHeader($"\nAlla studenter (Ö-A): ");
+            foreach (var s in _studenter.OrderByDescending(s => s.Namn))
+            {
+                Console.WriteLine($"{s.Id}. {s.Namn}, {s.Alder} år, klass {s.Klass}, {s.Poang} poäng");
+            }
+        }
+
+        // skriva ut alla ascending
+        public void SkrivUtAllaStigande()
+        {
+            ConsoleOutput.WriteHeader($"\nAlla studenter (A-Ö): ");
+            foreach (var s in _studenter.OrderBy(s => s.Namn))
+            {
+                Console.WriteLine($"{s.Id}. {s.Namn}, {s.Alder} år, klass {s.Klass}, {s.Poang} poäng");
+            }
+        }
+
+
     }
 }
